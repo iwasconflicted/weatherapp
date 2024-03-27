@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap");
+
+* body{
+   background: url("/assets/25501.jpg");
+    background-size: cover;
+}  
+ 
+/* Search Function */
+.search-container {
+  gap: 20px;
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.search-input {
+  font-family: Judson;
+  box-shadow: 20px 20px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-color: #d9d9d9;
+  align-items: start;
+  justify-content: center;
+  flex-grow: 1;
+  width: fit-content;
+  padding: 19px 23px;
+}
+
+.search-button {
+  font-family: Judson;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  box-shadow: 20px 20px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #d9d9d9;
+  margin: auto 0;
+  padding: 15px 24px;
+}
+
+/* Weather Forecast */
+.weather-card {
+  border-radius: 20px;
+  box-shadow: 20px 20px 4px 0px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-color: #d9d9d9;
+  display: flex;
+  margin-top: 46px;
+  width: 825px;
+  max-width: 100%;
+  flex-direction: column;
+  padding: 21px 0 54px;
+  position:relative; left:425px
+} 
+
+.favorites-icon {
+  width: 100px;
+  align-self: end;
+  margin-left: 15px;;
+  margin-bottom: -150px;
+  margin-right: -25px;
+  margin-top: 150px;
+}
+
+ .weather-details {
+  display: flex;
+  margin-top: -34px;
+  flex-direction: column;
+  align-items: start;
+  padding:  77px 0 23px;
+}  
+
+.city-name {
+  font: 70px Judson;
+  margin-top: -190px;
+  margin-left: -60px;
+}
+
+ .temperature {
+  text-align: center;
+  align-self: end;
+  margin-top: -85px;
+  margin-right: 50px;
+  font: 145px Judson;
+} 
+
+.low-temperature {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 150px;
+  margin-top: -113px;
+  font: 72px Judson;
+}
+
+.high-temperature {
+ align-self: end;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  text-align: center;
+  margin-right: 185px;
+  margin-top: 135px;
+  font: 72px Judson;
+} 
+
+/* 5 Day Cards */
+.forecast-container {
+  display: flex;
+  margin-top: 100px;
+  gap: 50px;
+} 
+
+ .forecast-card {
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 1);
+  background-color: rgba(217, 217, 217, 0.6);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 15px;
+  font-family: Judson;
+} 
+
+.forecast-icon {
+  width: 75px;
+}
+
+/*off-canvas */
+.hamburger {
+  width: 39px;
+  height: 2px;
+  background-color: black;
+  margin: 10px 0;
+}
+
+.off-canvas{
+  opacity: 1.1;
+  background: url("/assets/25501.jpg")
+}
+  
