@@ -42,12 +42,11 @@ let saveCityBtn = document.getElementById("saveCityBtn").addEventListener("click
         let colDiv = document.createElement("div");
         colDiv.classList = "col"; 
         let pTag = document.createElement("p");
-        pTag.innerText = favCity.name; 
+        pTag.innerText = favCity["0"].name; 
         pTag.addEventListener("click", function(){
             getLocation(pTag.innerText);
         });
-    
-      
+
         colDiv.appendChild(pTag);
         saveHere.appendChild(colDiv);
 });
@@ -78,7 +77,7 @@ if(favData && favData != null){
     document.getElementById("deleteCityBtn").src = "./assets/icon_trash_.png";
 
     for(let i = 0; i < favArr.length; i++){
-        if(displayName.innerText.toLowerCase() === favArr[i].cityName.toLowerCase()){
+        if(favCity.innerText.toLowerCase() === favArr[i].cityName.toLowerCase()){
             favArr.splice(i, 1);
             let colDiv = saveHere.getElementsByClassName("col")[i];
             saveHere.removeChild(colDiv);
@@ -99,7 +98,7 @@ async function getLocation(cityName){
     getCurrentWeather(lat, lon);
     getFiveDayForecast(lat, lon);
     favCity = weatherApi;
-    pickedCity = weatherApi["0"].name;
+    // pickedCity = weatherApi["0"].name;
 };
 
 // Current Weather
