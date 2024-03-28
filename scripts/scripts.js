@@ -1,18 +1,13 @@
+let favCity = [];
+let favArr = [];
+let savedCity;
+let defaultCity = "Stockton";
+
 let currentLocation = document.getElementById("currentLocation");
 let searchInput = document.getElementById("searchInput");
 let lowTemp = document.getElementById("lowTemp");
 let highTemp = document.getElementById("highTemp");
 let currentTemp = document.getElementById("currentTemp");
-
-let searchBar = document.getElementById("searchBar").addEventListener("click", function(){
-    getLocation(searchInput.value);
-    searchInput.value = "";
-})
- 
-let saveCityBtn = document.getElementById("saveCityBtn").addEventListener("click", function(){
-    document.getElementById("saveCityBtn").src = "./assets/heart.png";
-});
-
 
 let dayOne = document.getElementById("dayOne");
 let dayTwo = document.getElementById("dayTwo");
@@ -27,16 +22,87 @@ let dayFourTemp = document.getElementById("dayFourTemp");
 let dayFiveTemp = document.getElementById("dayFiveTemp");
 
 
+let searchBar = document.getElementById("searchBar").addEventListener("click", function(){
+    getLocation(searchInput.value);
+    searchInput.value = "";
+});
+ 
+// Save into favorites
+let saveCityBtn = document.getElementById("saveCityBtn").addEventListener("click", function(){
+    document.getElementById("saveCityBtn").src = "./assets/heart.png";
+    let obj ={
+        "cityName" : favCity["0"].name
+    }
+        console.log(obj);
+        favArr.push(obj);
+        console.log(favArr);
+        localStorage.setItem("favoriteCity", JSON.stringify(favArr));
+        console.log(localStorage);
+
+        let colDiv = document.createElement("div");
+        colDiv.classList = "col"; 
+        let pTag = document.createElement("p");
+        pTag.innerText = favCity.name; 
+        pTag.addEventListener("click", function(){
+            getLocation(pTag.innerText);
+        });
+    
+      
+        colDiv.appendChild(pTag);
+        saveHere.appendChild(colDiv);
+});
+
+let favData = JSON.parse(localStorage.getItem("favoriteCity"));
+console.log(JSON.parse(localStorage.favoriteCity));
+
+if(favData && favData != null){
+    
+    favArr = favData; 
+
+    for(let i =0; i < favArr.length; i++){
+        let colDiv = document.createElement("div");
+        colDiv.classList = "col";
+        let pTag = document.createElement("p");
+        pTag.innerText = favArr[i].cityName; 
+        pTag.addEventListener("click", function(){
+            getLocation(favArr[i].cityName);
+        });
+
+        colDiv.appendChild(pTag);
+        saveHere.appendChild(colDiv);
+    }
+}
+
+// Delete Favorites
+ let deleteCityBtn = document.getElementById("deleteCityBtn").addEventListener("click", function(){
+    document.getElementById("deleteCityBtn").src = "./assets/icon_trash_.png";
+
+    for(let i = 0; i < favArr.length; i++){
+        if(displayName.innerText.toLowerCase() === favArr[i].cityName.toLowerCase()){
+            favArr.splice(i, 1);
+            let colDiv = saveHere.getElementsByClassName("col")[i];
+            saveHere.removeChild(colDiv);
+        }
+    }
+    localStorage.setItem("favoriteCity", JSON.stringify(favArr));
+    console.log(favArr);
+    console.log(localStorage);
+ });
+
+
 async function getLocation(cityName){
     let weatherApi = await fetch("http://api.openweathermap.org/geo/1.0/direct?q="+ cityName +"&limit=2&appid=206b289f9429e5805345fdcf42f2d083").then((Response) => Response.json());
+    console.log(weatherApi);
     lat = weatherApi["0"].lat.toString();
     lon = weatherApi["0"].lon.toString();
     currentLocation.innerText = weatherApi["0"].name + ", " + weatherApi["0"].state;
     getCurrentWeather(lat, lon);
     getFiveDayForecast(lat, lon);
-    console.log(weatherApi);
+    favCity = weatherApi;
+    pickedCity = weatherApi["0"].name;
 };
 
+// Current Weather
 async function getCurrentWeather(lat, lon){
     let weatherApi = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=206b289f9429e5805345fdcf42f2d083&units=imperial").then((Response) => Response.json());
     currentTemp.innerText = weatherApi.main.temp;
@@ -46,7 +112,7 @@ async function getCurrentWeather(lat, lon){
     console.log(weatherApi);
 };
 
-//Five day forecast API
+//Five day forecast 
 async function getFiveDayForecast(lat, lon){
     let weatherApi = await fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=206b289f9429e5805345fdcf42f2d083&units=imperial").then((Response) => Response.json());
     dayOneTemp.innerText = Math.floor(weatherApi.list["3"].main.temp) + "°";
