@@ -21,9 +21,11 @@
         <h3 class="off-canvas offcanvas-title" id="offcanvasWithBothOptionsLabel">Favorites</h3>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="off-canvas offcanvas-body" id="saveHere">
-        <img src="/assets/icon _trash_.png" id="deleteCityBtn" alt="">
-      </div>
+      <div class="off-canvas offcanvas-body" id="saveHere" class="heart">
+        
+       <img src="/assets/icon _trash_.png" id="deleteCityBtn" class="trashcan" alt="">   
+       <!-- <button id="deleteCityBtn">Delete City</button>  -->
+    </div>
     </div>
  <!-- Offcanvas end -->
 
@@ -47,7 +49,7 @@
   <div class="weather-card px-5 m-5 ">
     <div class="weather-details">
       <img src="/assets/heart.png" class="favorites-icon m-5" id="saveCityBtn"/>
-      <h1 class="city-name px-5 my-8 " id="currentLocation">Stockton, US</h1>
+      <h1 class="city-name px-5 my-8 " id="currentLocation">Stockton</h1>
       
       <img src="/assets/Vector.png" class="temperature-icon px-5 mx-5" />
       <div class="temperature" id="currentTemp">70°F</div>
@@ -66,33 +68,47 @@
 
 <div class="forecast-container m-5 p-5">
     <div class="forecast-card">
-      <h1 id="dayOne">Monday
+      <h1 id="dayOne">
         <br>
-        <img src="/assets/Vector.png" class="forecast-icon" /></h1>
+        <img src="/assets/Vector.png" class="" /></h1>
+        <img src="/assets/Vector.png" class="forecast-icon" id="oneIcon" /></h1> 
+        <br>
       <h2 id="dayOneTemp">70°F</h2>
     </div>
     <div class="forecast-card">
-      <h1 id="dayTwo">Tuesday
+      <h1 id="dayTwo">
         <br>
+ 
         <img src="/assets/Vector.png" class="forecast-icon" /></h1>
+        <img src="/assets/Vector.png" class="forecast-icon" id="twoIcon" /></h1>
+        <br>
       <h2 id="dayTwoTemp">70°F</h2>
     </div>
     <div class="forecast-card">
-      <h1 id="dayThree">Wednesday
+      <h1 id="dayThree">
         <br>
+      
         <img src="/assets/Vector.png"  class="forecast-icon" /></h1>
+        <img src="/assets/Vector.png"  class="forecast-icon" id="threeIcon" /></h1>
+        <br>
       <h2 id="dayThreeTemp">70°F</h2>
     </div>
     <div class="forecast-card">
-      <h1 id="dayFour">Thursday
+      <h1 id="dayFour">
         <br>
+      
         <img src="/assets/Vector.png" class="forecast-icon" /></h1>
+        <img src="/assets/Vector.png" class="forecast-icon" id="fourIcon"/></h1>
+        <br>
       <h2 id="dayFourTemp">70°F</h2>
     </div>
     <div class="forecast-card">
-      <h1 id="dayFive">Friday
+      <h1 id="dayFive">
         <br>
-        <img src="/assets/Vector.png" class="forecast-icon" /></h1>
+
+        <img src="/assets/Vector.png" class="forecast-icon"  /></h1>
+        <img src="/assets/Vector.png" class="forecast-icon" id="fiveIcon" /></h1>
+        <br>
       <h2 id="dayFiveTemp">70°F</h2>
     </div>
   </div>

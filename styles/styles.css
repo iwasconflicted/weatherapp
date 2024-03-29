@@ -123,6 +123,7 @@
   width: 75px;
 }
 
+
 /*off-canvas */
 .hamburger {
   width: 39px;
@@ -135,4 +136,14 @@
   opacity: 1.1;
   background: url("/assets/25501.jpg")
 }
-  
+
+.trashcan{
+  margin-left: 325px;
+  margin-top: 15px;
+}
+
+.heart{
+  font: 145px Judson;
+  margin-left: 325px;
+  margin-top: 10px;
+}

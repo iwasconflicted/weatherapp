@@ -1,6 +1,6 @@
 let favCity = [];
 let favArr = [];
-let savedCity;
+// let savedCity = "";
 let defaultCity = "Stockton";
 
 let currentLocation = document.getElementById("currentLocation");
@@ -27,6 +27,17 @@ let searchBar = document.getElementById("searchBar").addEventListener("click", f
     searchInput.value = "";
 });
  
+
+let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+let d = new Date();
+let day = daysOfWeek[d.getDay()];
+dayOne.innerText = daysOfWeek[d.getDay()+1];
+dayTwo.innerText = daysOfWeek[d.getDay()+2];
+dayThree.innerText = daysOfWeek[d.getDay()+3];
+dayFour.innerText = daysOfWeek[d.getDay()+4];
+dayFive.innerText = daysOfWeek[d.getDay()+5];
+
+
 // Save into favorites
 let saveCityBtn = document.getElementById("saveCityBtn").addEventListener("click", function(){
     document.getElementById("saveCityBtn").src = "./assets/heart.png";
@@ -51,14 +62,15 @@ let saveCityBtn = document.getElementById("saveCityBtn").addEventListener("click
         saveHere.appendChild(colDiv);
 });
 
+// Grabs an instance of our favorites list and store it in our array so we can populate the page with our favorites
 let favData = JSON.parse(localStorage.getItem("favoriteCity"));
 console.log(JSON.parse(localStorage.favoriteCity));
 
 if(favData && favData != null){
     
     favArr = favData; 
-
-    for(let i =0; i < favArr.length; i++){
+    // Go through our array of favorites and make elements for each entry in the same way we do when we save a new favorite
+    for(let i = 0; i < favArr.length; i++){
         let colDiv = document.createElement("div");
         colDiv.classList = "col";
         let pTag = document.createElement("p");
@@ -73,20 +85,29 @@ if(favData && favData != null){
 }
 
 // Delete Favorites
- let deleteCityBtn = document.getElementById("deleteCityBtn").addEventListener("click", function(){
-    document.getElementById("deleteCityBtn").src = "./assets/icon_trash_.png";
+//  let deleteCityBtn = document.getElementById("deleteCityBtn").addEventListener("click", function(){
+//      document.getElementById("deleteCityBtn").src = "../assets/icon_trash_.png";
 
+let deleteCityBtn = document.getElementById("deleteCityBtn")
+
+deleteCityBtn.addEventListener("click", function(){
     for(let i = 0; i < favArr.length; i++){
-        if(favCity.innerText.toLowerCase() === favArr[i].cityName.toLowerCase()){
+        if(currentLocation.innerText === favArr[i].cityName){
+    // if(currentLocation.innerText.toLowerCase() === favArr[i].pokeName.toLowerCase()){
+         // remove the element from the page
             favArr.splice(i, 1);
-            let colDiv = saveHere.getElementsByClassName("col")[i];
+                // remove the element from the page
+            let colDiv = saveHere.getElementsByClassName("col")["0"];
             saveHere.removeChild(colDiv);
+          
         }
+          localStorage.removeItem("favoriteCity", JSON.stringify(favArr));
+
     }
-    localStorage.setItem("favoriteCity", JSON.stringify(favArr));
     console.log(favArr);
     console.log(localStorage);
  });
+//  Have to refresh page in order to delete for some reason
 
 
 async function getLocation(cityName){
@@ -94,11 +115,11 @@ async function getLocation(cityName){
     console.log(weatherApi);
     lat = weatherApi["0"].lat.toString();
     lon = weatherApi["0"].lon.toString();
-    currentLocation.innerText = weatherApi["0"].name + ", " + weatherApi["0"].state;
+    currentLocation.innerText = weatherApi["0"].name;
     getCurrentWeather(lat, lon);
     getFiveDayForecast(lat, lon);
     favCity = weatherApi;
-    // pickedCity = weatherApi["0"].name;
+    // savedCity = favCity.name;
 };
 
 // Current Weather
@@ -119,5 +140,11 @@ async function getFiveDayForecast(lat, lon){
     dayThreeTemp.innerText = Math.floor(weatherApi.list["27"].main.temp) + "°";
     dayFourTemp.innerText = Math.floor(weatherApi.list["33"].main.temp) + "°";
     dayFiveTemp.innerText = Math.floor(weatherApi.list["38"].main.temp) + "°";
+   
+    // twoIconIcon.src = "./assets/Vector.png";
+    // threeIcon.src = "./assets/Vector.png";
+    // fourIcon.src = "./assets/Vector.png";
+    // fiveIcon.src = "./assets/Vector.png";
+
     console.log(weatherApi);
 };
